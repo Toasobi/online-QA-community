@@ -1,0 +1,369 @@
+info:
+  contact: {}
+  title: 蓝山工作室考核项目接口测试 -- 实现一个类似知乎的问答社区
+  version: "1.0"
+paths:
+  /send-code:
+    post:
+      parameters:
+      - description: mail
+        in: formData
+        name: mail
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 发送验证码
+      tags:
+      - 公共方法
+  /user-login:
+    post:
+      parameters:
+      - description: username
+        in: formData
+        name: username
+        type: string
+      - description: password
+        in: formData
+        name: password
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - 公共方法
+  /user-register:
+    post:
+      parameters:
+      - description: username
+        in: formData
+        name: username
+        type: string
+      - description: password
+        in: formData
+        name: password
+        type: string
+      - description: phone
+        in: formData
+        name: phone
+        type: string
+      - description: mail
+        in: formData
+        name: mail
+        required: true
+        type: string
+      - description: is_admin
+        in: formData
+        name: is_admin
+        type: string
+      - description: code
+        in: formData
+        name: code
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 用户注册
+      tags:
+      - 公共方法
+  /user/answer:
+    post:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: content
+        in: formData
+        name: content
+        type: string
+      - description: question_identity
+        in: formData
+        name: question_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 回答提问
+      tags:
+      - 用户私有方法
+  /user/answer-delete:
+    delete:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: answer_identity
+        in: query
+        name: answer_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 删除回答
+      tags:
+      - 用户私有方法
+  /user/answer-like:
+    post:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: answer_identity
+        in: formData
+        name: answer_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 点赞功能
+      tags:
+      - 用户私有方法
+  /user/answer-list:
+    get:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: size
+        in: query
+        name: size
+        type: integer
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 查看本人所有回答
+      tags:
+      - 用户私有方法
+  /user/answer-update:
+    put:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: content
+        in: formData
+        name: content
+        type: string
+      - description: answer_identity
+        in: formData
+        name: answer_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 修改回答
+      tags:
+      - 用户私有方法
+  /user/attention:
+    post:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: user_identity
+        in: formData
+        name: user_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 关注功能
+      tags:
+      - 用户私有方法
+  /user/comment:
+    post:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: content
+        in: formData
+        name: content
+        type: string
+      - description: question_identity
+        in: formData
+        name: question_identity
+        required: true
+        type: string
+      - description: answer_identity
+        in: formData
+        name: answer_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 发个评论
+      tags:
+      - 用户私有方法
+  /user/comment-list:
+    get:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: size
+        in: query
+        name: size
+        type: integer
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 查看本人所有评论
+      tags:
+      - 用户私有方法
+  /user/problem-delete:
+    delete:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: question_identity
+        in: query
+        name: question_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 删除问题
+      tags:
+      - 用户私有方法
+  /user/problem-list:
+    get:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: size
+        in: query
+        name: size
+        type: integer
+      - description: keyword
+        in: query
+        name: keyword
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 查看本人所发出的问题
+      tags:
+      - 用户私有方法
+  /user/problem-update:
+    put:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: content
+        in: formData
+        name: content
+        type: string
+      - description: title
+        in: formData
+        name: title
+        type: string
+      - description: problem_identity
+        in: formData
+        name: problem_identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 修改问题
+      tags:
+      - 用户私有方法
+  /user/submit:
+    post:
+      parameters:
+      - description: authorization
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: title
+        in: formData
+        name: title
+        type: string
+      - description: content
+        in: formData
+        name: content
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":""}'
+          schema:
+            type: string
+      summary: 发起提问
+      tags:
+      - 用户私有方法
+swagger: "2.0"
