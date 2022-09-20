@@ -7,5 +7,5 @@ import (
 )
 
 func TestMd5(t *testing.T) {
-	fmt.Println(fmt.Sprintf("%x", md5.Sum([]byte("268366")))) //16进制返回
+	fmt.Println(fmt.Sprintf("%x", md5.Sum([]byte("123456")))) //16进制返回
 }
